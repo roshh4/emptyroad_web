@@ -12,6 +12,7 @@ npm run dev
 
 
 # 1. Mission Planner Data (Navigation & Telemetry)
+```
 GPS Location (Latitude, Longitude)
 Speed (Current and Target Speed)
 Heading / Orientation (Compass direction)
@@ -23,20 +24,20 @@ IMU Data (Acceleration, Gyro, and Roll/Pitch/Yaw)
 Communication Signal Strength (If using wireless control)
 Distance to Destination
 Obstacle Detection (LiDAR / Sonar readings)
-
+```
 # 2. Camera Feed & AI Processing
-Live Video Stream (From onboard camera)
+```Live Video Stream (From onboard camera)
 Object Detection Overlay (Highlighting detected waste)
 Waste Type Classification (Plastic, Metal, Organic, etc.)
 Water Surface Condition (Waves, debris density)
-
+```
 # 3. Waste Collection Metrics
-Total Waste Collected (Weight in kg or number of items)
+```Total Waste Collected (Weight in kg or number of items)
 Belt Fill Level (Percentage of bin capacity used)
 Real-time Waste Count (Objects picked up per minute/hour)
 Waste Sorting Details (Categorized count of collected waste)
 Next Docking Time (Estimation based on bin fill level)
-
+```
 # 4. System Health
-Mission Time & Duration
-Data Export (CSV/PDF) (For analytics & reporting)
+```Mission Time & Duration
+Data Export (CSV/PDF) (For analytics & reporting)```
