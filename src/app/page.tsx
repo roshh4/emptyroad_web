@@ -62,7 +62,7 @@ const FlightDashboard = () => {
             <p>Windspeed: 15 km/h</p>
           </Card>
         </div>
-        <div className="h-[20%]">
+        <div className="h-[20%] ">
           <Card title="Emergency Controls" icon1={"⚠️"} icon2={"🆘"}>
             <button className="bg-red-600 text-white px-4 py-2 rounded">Stop</button>
             <button className="bg-green-600 text-white px-4 py-2 rounded ml-2">Start</button>
