@@ -66,8 +66,12 @@ const FlightDashboard = () => {
             </div>
           </Card>
         </div>
-        <div className="h-[20%]">
+        <div className="h-[20%] ">
           <Card title="Emergency Controls" icon1={"⚠️"} icon2={"🆘"}>
+
+          <div className="flex items-center justify-center h-screen">
+      <ExportButton />
+    </div>
             <div className="flex gap-4">
               <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">Stop</button>
               <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">Start</button>
