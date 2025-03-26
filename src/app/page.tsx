@@ -1,19 +1,22 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
+const Map = dynamic(() => import("@/app/components/Map"), { ssr: false });
+const SystemData = dynamic(() => import("@/app/components/SystemData"), { ssr: false });
 
 // 🔹 Reusable Card Component with Tailwind Styling
 const Card = ({ title, icon1, icon2, children }) => {
   return (
-    <div className="bg-[#0c1428] rounded-xl p-4 text-white flex flex-col h-full">
-      {/* Header Inside the Card (Full Width) */}
+    <div className="bg-[#0c1428] rounded-xl p-4 text-white flex flex-col h-full w-full">
+      {/* Header */}
       <div className="border-b border-gray-600 pb-2 flex justify-between items-center w-full">
-        <h2 className="text-xs font-semibold tracking-wide">{title}</h2> {/* Smaller Font */}
+        <h2 className="text-xs font-semibold tracking-wide">{title}</h2>
         <div className="flex gap-2 text-lg">{icon1}{icon2}</div>
       </div>
 
-      {/* Card Content (Flexible & Centered) */}
-      <div className="flex-1 flex flex-col justify-center items-center pt-3">
+      {/* Card Content (Expanding Fully) */}
+      <div className="flex-1 flex flex-col justify-center items-center w-full h-full pt-3">
         {children}
       </div>
     </div>
@@ -26,19 +29,13 @@ const FlightDashboard = () => {
       {/* Left Side (2/3 Width) */}
       <div className="w-2/3 flex flex-col gap-2">
         {/* Navigation & Telemetry Section */}
-        <div className="flex h-[55%] gap-2">
+        <div className="flex h-[100%] gap-2">
           <Card title="Navigation Map" icon1={"📡"} icon2={"⚓"}>
-            <img src="map.jpg" className="w-full h-auto rounded-lg shadow-md" alt="Map" />
-          </Card>
-          <Card title="Telemetry Data" icon1={"📊"} icon2={"🛰️"}>
-            <div className="text-sm space-y-1">
-              <p>Speed: <span className="font-bold">30 knots</span></p>
-              <p>Battery: <span className="font-bold">85%</span></p>
-              <p>Altitude: <span className="font-bold">100m</span></p>
+            <div className="h-full w-full">
+              <Map />
             </div>
           </Card>
         </div>
-
         {/* Parameter Data Section */}
         <div className="h-[45%]">
           <Card title="Parameter Data" icon1={"⚙️"} icon2={"📡"}>
@@ -59,22 +56,17 @@ const FlightDashboard = () => {
           </Card>
         </div>
         <div className="h-[35%]">
-          <Card title="Weather Data" icon1={"🌦"} icon2={"📡"}>
+          <Card title="Weather Data" >
             <div className="text-sm space-y-1">
               <p>Temp: <span className="font-bold">25°C</span></p>
               <p>Windspeed: <span className="font-bold">15 km/h</span></p>
             </div>
           </Card>
         </div>
-        <div className="h-[20%] ">
-          <Card title="Emergency Controls" icon1={"⚠️"} icon2={"🆘"}>
-
-          <div className="flex items-center justify-center h-screen">
-      <ExportButton />
-    </div>
+        <div className="h-[20%]">
+          <Card title="System Data">
             <div className="flex gap-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">Stop</button>
-              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">Start</button>
+              <SystemData />
             </div>
           </Card>
         </div>
