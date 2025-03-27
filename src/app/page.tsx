@@ -50,7 +50,7 @@ const FlightDashboard = () => {
 
       {/* Right Side (1/3 Width) */}
       <div className="w-1/3 flex flex-col gap-2">
-        <div className="h-[45%]">
+        <div className="h-[50%]">
           <Card title="Camera Feed" icon1={"📷"} icon2={"🔍"}>
             <p className="text-sm text-green-400">AI Object Detection: Active</p>
           </Card>
@@ -63,10 +63,10 @@ const FlightDashboard = () => {
             </div>
           </Card>
         </div>
-        <div className="h-[20%]">
+        <div className="h-[15%]">
           <Card title="System Data">
             <div className="flex gap-4">
-              <SystemData />
+              <SystemData/>
             </div>
           </Card>
         </div>
