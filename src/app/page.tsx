@@ -5,6 +5,28 @@ import dynamic from "next/dynamic";
 const Map = dynamic(() => import("@/app/components/Map"), { ssr: false });
 const SystemData = dynamic(() => import("@/app/components/SystemData"), { ssr: false });
 
+import {
+  Wifi,
+  Phone,
+  Clock,
+  Compass,
+  Box,
+  AlertCircle,
+  Download,
+  Camera,
+  Trash2,
+  BarChart3,
+  Navigation,
+  Anchor,
+  Droplet,
+  Wind,
+  Zap,
+  FileDown,
+  Cog,
+  Satellite,
+  Search,
+} from "lucide-react";
+
 // 🔹 Reusable Card Component with Tailwind Styling
 const Card = ({ title, icon1, icon2, children }) => {
   return (
@@ -12,7 +34,10 @@ const Card = ({ title, icon1, icon2, children }) => {
       {/* Header */}
       <div className="border-b border-gray-600 pb-2 flex justify-between items-center w-full">
         <h2 className="text-xs font-semibold tracking-wide">{title}</h2>
-        <div className="flex gap-2 text-lg">{icon1}{icon2}</div>
+        <div className="flex gap-3 text-lg px-2">
+          {icon1 && <span className="text-white">{icon1}</span>}
+          {icon2 && <span className="text-white">{icon2}</span>}
+        </div>
       </div>
 
       {/* Card Content (Expanding Fully) */}
@@ -30,15 +55,16 @@ const FlightDashboard = () => {
       <div className="w-2/3 flex flex-col gap-2">
         {/* Navigation & Telemetry Section */}
         <div className="flex h-[100%] gap-2">
-          <Card title="Navigation Map" icon1={"📡"} icon2={"⚓"}>
+          <Card title="Navigation Map" icon1={<Navigation size={16} />} icon2={<Anchor size={16} />}>
             <div className="h-full w-full">
               <Map />
             </div>
           </Card>
         </div>
+
         {/* Parameter Data Section */}
         <div className="h-[45%]">
-          <Card title="Parameter Data" icon1={"⚙️"} icon2={"📡"}>
+          <Card title="Parameter Data" icon1={<Cog size={16} />} icon2={<Satellite size={16} />}>
             <div className="text-sm space-y-1">
               <p>IMU Data: <span className="font-bold">Stable</span></p>
               <p>Propeller RPM: <span className="font-bold">3500</span></p>
@@ -51,12 +77,12 @@ const FlightDashboard = () => {
       {/* Right Side (1/3 Width) */}
       <div className="w-1/3 flex flex-col gap-2">
         <div className="h-[50%]">
-          <Card title="Camera Feed" icon1={"📷"} icon2={"🔍"}>
+          <Card title="Camera Feed" icon1={<Camera size={16} />} icon2={<Search size={16} />}>
             <p className="text-sm text-green-400">AI Object Detection: Active</p>
           </Card>
         </div>
         <div className="h-[35%]">
-          <Card title="Weather Data" >
+          <Card title="Weather Data" icon1={<Droplet size={16} />} icon2={<Wind size={16} />}>
             <div className="text-sm space-y-1">
               <p>Temp: <span className="font-bold">25°C</span></p>
               <p>Windspeed: <span className="font-bold">15 km/h</span></p>
@@ -64,9 +90,9 @@ const FlightDashboard = () => {
           </Card>
         </div>
         <div className="h-[15%]">
-          <Card title="System Data">
+          <Card title="System Data" icon1={<Box size={16} />}>
             <div className="flex gap-4">
-              <SystemData/>
+              <SystemData />
             </div>
           </Card>
         </div>
