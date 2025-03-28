@@ -2,6 +2,7 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import WasteCollectionMetrics from "./components/WasteCollectionReport";
 const Map = dynamic(() => import("@/app/components/Map"), { ssr: false });
 const SystemData = dynamic(() => import("@/app/components/SystemData"), { ssr: false });
 
@@ -26,6 +27,19 @@ import {
   Satellite,
   Search,
 } from "lucide-react";
+
+const wasteData = {
+  beltFillLevel: 75, // Example value
+  wasteCountPerHour: 120,
+  wasteSorting: {
+    organic: 50,
+    plastic: 30,
+    paper: 20,
+    metal: 10,
+    other: 5,
+  },
+  nextDockingTime: "12:30 PM",
+};
 
 // 🔹 Reusable Card Component with Tailwind Styling
 const Card = ({ title, icon1, icon2, children }) => {
@@ -69,6 +83,7 @@ const FlightDashboard = () => {
               <p>IMU Data: <span className="font-bold">Stable</span></p>
               <p>Propeller RPM: <span className="font-bold">3500</span></p>
               <p>Obstacle Detection: <span className="font-bold text-green-400">Clear</span></p>
+              {/* <WasteCollectionMetrics{...wasteData}/> */}
             </div>
           </Card>
         </div>
@@ -84,8 +99,9 @@ const FlightDashboard = () => {
         <div className="h-[35%]">
           <Card title="Weather Data" icon1={<Droplet size={16} />} icon2={<Wind size={16} />}>
             <div className="text-sm space-y-1">
-              <p>Temp: <span className="font-bold">25°C</span></p>
+              {/* <p>Temp: <span className="font-bold">25°C</span></p>
               <p>Windspeed: <span className="font-bold">15 km/h</span></p>
+              <WasteCollectionMetrics{...wasteData} /> */}
             </div>
           </Card>
         </div>
