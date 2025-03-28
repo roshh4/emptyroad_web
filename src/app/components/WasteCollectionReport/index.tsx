@@ -1,69 +1,110 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { Progress } from "@/app/components/ui/Progress";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 interface WasteCollectionMetricsProps {
   beltFillLevel: number;
   wasteCountPerHour: number;
-  wasteSorting: {
-    organic: number;
-    plastic: number;
-    paper: number;
-    metal: number;
-    other: number;
+  wasteSorting?: {
+    organic?: number;
+    plastic?: number;
+    paper?: number;
+    metal?: number;
+    other?: number;
   };
   nextDockingTime: string;
 }
 
 const WasteCollectionMetrics: React.FC<WasteCollectionMetricsProps> = ({
-  beltFillLevel,
-  wasteCountPerHour,
-  wasteSorting,
-  nextDockingTime,
+  beltFillLevel = 0,
+  wasteCountPerHour = 0,
+  wasteSorting = {},
+  nextDockingTime = "N/A",
 }) => {
-  const totalWasteCollected = Object.values(wasteSorting).reduce((a, b) => a + b, 0);
+  // Safely handle potential undefined values
+  const safeSorting = {
+    organic: 0,
+    plastic: 0,
+    paper: 0,
+    metal: 0,
+    other: 0,
+    ...wasteSorting,
+  };
+
+  const totalWasteCollected = Object.values(safeSorting).reduce((a, b) => a + b, 0);
+
+  const wasteData = Object.entries(safeSorting)
+    .filter(([_, count]) => count > 0)
+    .map(([type, count]) => ({
+      type,
+      count,
+    }));
 
   return (
-    <Card className="w-full h-full bg-transparent shadow-none rounded-none p-4">
-      <CardHeader className="p-0 mb-2">
-        <CardTitle className="text-sm">Waste Collection Metrics</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2 p-0">
-        {/* Belt Fill Level */}
-        <div>
-          <h3 className="text-xs font-medium mb-1">Belt Fill Level</h3>
-          <Progress value={beltFillLevel} className="w-full h-2" />
-          <p className="text-[10px] text-muted-foreground mt-1">
-            {beltFillLevel}% of bin capacity used
-          </p>
-        </div>
-
-        {/* Real-time Waste Collection */}
-        <div>
-          <h3 className="text-xs font-medium">Real-time Waste Collection</h3>
-          <p className="text-sm font-bold">{wasteCountPerHour} objects/hour</p>
-        </div>
-
-        {/* Waste Sorting Breakdown */}
-        <div>
-          <h3 className="text-xs font-medium mb-1">Waste Sorting Breakdown</h3>
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-1 text-center">
-            {Object.entries(wasteSorting).map(([type, count]) => (
-              <div key={type} className="text-xs">
-                <p className="capitalize">{type}</p>
-                <p className="font-semibold">{count} ({((count / totalWasteCollected) * 100).toFixed(1)}%)</p>
-              </div>
-            ))}
+    <div className="w-full h-full flex flex-col gap-2 p-2">
+      {/* Grid Layout for Metrics */}
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+        {/* Belt Fill */}
+        <div className="bg-[#1c2333] p-3 rounded-lg flex flex-col justify-between">
+          <p className="text-xs text-gray-400">Bin Fill</p>
+          <div className="flex items-center space-x-2">
+            <div className="h-2 w-full bg-gray-700 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-green-500"
+                style={{ width: `${Math.min(Math.max(beltFillLevel, 0), 100)}%` }}
+              />
+            </div>
+            <span className="text-xs text-green-400">{beltFillLevel}%</span>
           </div>
         </div>
 
-        {/* Next Docking Time */}
-        <div>
-          <h3 className="text-xs font-medium">Next Docking Estimation</h3>
-          <p className="text-sm font-bold text-primary">{nextDockingTime}</p>
+        {/* Waste Count */}
+        <div className="bg-[#1c2333] p-3 rounded-lg flex flex-col justify-between">
+          <p className="text-xs text-gray-400">Waste/Hour</p>
+          <p className="text-sm font-bold text-white">{wasteCountPerHour}</p>
         </div>
-      </CardContent>
-    </Card>
+
+        {/* Next Docking */}
+        <div className="bg-[#1c2333] p-3 rounded-lg flex flex-col justify-between">
+          <p className="text-xs text-gray-400">Next Dock</p>
+          <p className="text-sm font-bold text-blue-400">{nextDockingTime}</p>
+        </div>
+
+        {/* Total Waste */}
+        <div className="bg-[#1c2333] p-3 rounded-lg flex flex-col justify-between">
+          <p className="text-xs text-gray-400">Total Waste</p>
+          <p className="text-sm font-bold text-white">{totalWasteCollected}</p>
+        </div>
+      </div>
+
+      {/* Waste Composition Chart */}
+      <div className="w-full bg-[#1c2333] rounded-lg p-3 flex flex-col flex-grow h-[50%] ">
+        <p className="text-xs text-gray-400">Waste Composition</p>
+        {wasteData.length > 0 ? (
+          <div className="flex-1 gap-2 pt-1 mr-7">
+            <ResponsiveContainer width="100%" py-10 height={110} px-10>
+              <BarChart data={wasteData}>
+                <XAxis
+                  dataKey="type"
+                  tick={{ fill: "white", fontSize: 10 }}
+                  axisLine={{ stroke: "#4a5568" }}
+                />
+                <YAxis tick={{ fill: "white", fontSize: 10 }} axisLine={{ stroke: "#4a5568" }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#2d3748",
+                    borderColor: "#4a5568",
+                  }}
+                  itemStyle={{ color: "white" }}
+                />
+                <Bar dataKey="count" fill="#4299e1" barSize={20} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        ) : (
+          <p className="text-xs text-gray-500 text-center py-4">No waste data available</p>
+        )}
+      </div>
+    </div>
   );
 };
 
