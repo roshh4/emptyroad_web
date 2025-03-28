@@ -71,11 +71,12 @@ const FlightDashboard = () => {
           </Card>
         </div>
         <div className="h-[35%]">
-          <Card title="Weather Data" >
-            <div className="text-sm space-y-1">
-              <p>Temp: <span className="font-bold">25°C</span></p>
-              <p>Windspeed: <span className="font-bold">15 km/h</span></p>
-            </div>
+          <Card title="Waste Collection" >
+            {/* <div className="text-sm space-y-1">
+                <p>Temp: <span className="font-bold">25°C</span></p>
+                <p>Windspeed: <span className="font-bold">15 km/h</span></p>
+            </div> */}
+            <WasteCollectionMetrics{...wasteData}/>
           </Card>
         </div>
         <div className="h-[15%]">
