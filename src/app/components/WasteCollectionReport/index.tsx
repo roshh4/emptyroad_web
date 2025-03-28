@@ -79,7 +79,7 @@ const WasteCollectionMetrics: React.FC<WasteCollectionMetricsProps> = ({
       </div>
 
       {/* Waste Composition Chart */}
-      <div className="bg-[#1c2333] rounded-lg p-2 h-32">
+      <div className="bg-[#1c2333] rounded-lg p-2 h-24">
         <p className="text-xs text-gray-400 mb-1">Waste Composition</p>
         {wasteData.length > 0 ? (
           <ResponsiveContainer width="100%" height="100%">

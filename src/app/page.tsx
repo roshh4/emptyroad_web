@@ -70,14 +70,12 @@ const FlightDashboard = () => {
             <p className="text-sm text-green-400">AI Object Detection: Active</p>
           </Card>
         </div>
-        <div className="h-[35%]">
-          <Card title="Waste Collection" >
-            {/* <div className="text-sm space-y-1">
-                <p>Temp: <span className="font-bold">25°C</span></p>
-                <p>Windspeed: <span className="font-bold">15 km/h</span></p>
-            </div> */}
-            <WasteCollectionMetrics{...wasteData}/>
-          </Card>
+        <div className="h-[35%] flex">
+        <Card title="Waste Collection" className="w-full h-full flex flex-col">
+         <div className="flex-1 w-full">
+          <WasteCollectionMetrics {...wasteData} />
+         </div>
+         </Card>
         </div>
         <div className="h-[15%]">
           <Card title="System Data">
