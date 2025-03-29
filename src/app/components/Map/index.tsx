@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet"; // 🟢 Import Leaflet for custom icons
+import L from "leaflet";
 
 const pinIcon = L.icon({
-  iconUrl: "/pin.png", // 🎯 Path to your pin image (stored in public/)
-  iconSize: [32, 32], // Adjust size as needed
-  iconAnchor: [16, 32], // Centers the icon properly
-  popupAnchor: [0, -32], // Adjust popup positioning
+  iconUrl: "/pin.png", 
+  iconSize: [32, 32], 
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32], 
 });
 
 const MapComponent = () => {
