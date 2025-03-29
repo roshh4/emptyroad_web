@@ -28,6 +28,7 @@ import {
   Satellite,
   Search,
 } from "lucide-react";
+import BatteryComponent from "./components/Battery";
 
 const wasteData = {
   beltFillLevel: 75, // Example value
@@ -77,21 +78,26 @@ const FlightDashboard = () => {
           </Card>
         </div>
 
-        {/* Parameter Data Section */}
-        <div className="h-[45%]">
-          <div className="w-[75%]">
-            <Card title="Parameter Data" icon1={<Cog size={16} />} icon2={<Satellite size={16} />}>
-            <div className="h-full w-full">
-            <ParameterDataCard />
-            </div>
-            </Card>
-          </div>
-          <div className="w-[25%]">
-
-          </div>
-        </div>
+        {/* Parameter Data Section with New Card */}
+<div className="h-[45%] flex gap-2">
+  {/* Parameter Data */}
+  <div className="w-1/2 h-full">
+    <Card title="Parameter Data" icon1={<Cog size={16} />} icon2={<Satellite size={16} />}>
+      <div className="h-full w-full">
+        <ParameterDataCard />
       </div>
+    </Card>
+  </div>
 
+  {/* New Card (Example: System Performance) */}
+  <div className="w-1/2 h-full">
+    <Card title="System Performance" icon1={<BarChart3 size={16} />} icon2={<AlertCircle size={16} />}>
+     <BatteryComponent/>  
+      </Card>
+      </div>
+      </div>
+        </div>
+     
       {/* Right Side (1/3 Width) */}
       <div className="w-1/3 flex flex-col gap-2">
         <div className="h-[40%]">
