@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { Navigation2, Battery, Compass, Cpu } from "lucide-react";
+
 
 const ParameterDataCard = () => {
+    const [activeTab, setActiveTab] = useState("telemetry");
   return (
     <div className="w-full h-full rounded-lg text-white">
-      <div className="flex border-b border-gray-600 ">
-        <button className="flex-1 py-2 px-4 bg-gray-700 rounded-t-lg">Telemetry</button>
-        <button className="flex-1 py-2 px-4 text-gray-400">Altitude</button>
+      <div className="grid grid-cols-4 bg-gray-700 rounded-lg p-2 mb-4">
+
       </div>
       
       <div className="grid grid-cols-3 gap-x-2 gap-y-2 pt-2 ">
