@@ -99,8 +99,10 @@ export default function BatteryComponent() {
                 {battery.remaining.toFixed(0)}%
               </div>
             </div>
+            
             <div className="mt-2">{renderMiniChart(battery.history, getBatteryColor(battery.remaining).bg)}</div>
           </div>
+
 
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-[#0c1428] rounded-lg p-3 shadow-none">
