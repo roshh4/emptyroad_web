@@ -4,29 +4,21 @@ import React from "react";
 import dynamic from "next/dynamic";
 import WasteCollectionMetrics from "./components/WasteCollectionReport";
 import ParameterDataCard from "./components/ParameterData";
+ import  ControlInputsComponent from "./components/ControlInputs/index"
+ 
 const Map = dynamic(() => import("@/app/components/Map"), { ssr: false });
 const SystemData = dynamic(() => import("@/app/components/SystemData"), { ssr: false });
 
 import {
-  Wifi,
-  Phone,
-  Clock,
-  Compass,
-  Box,
-  AlertCircle,
-  Download,
-  Camera,
-  Trash2,
-  BarChart3,
   Navigation,
   Anchor,
-  Droplet,
-  Wind,
-  Zap,
-  FileDown,
+  BarChart3,
+  AlertCircle,
+  Camera,
+  Search,
+  Box,
   Cog,
   Satellite,
-  Search,
 } from "lucide-react";
 import BatteryComponent from "./components/Battery";
 
@@ -75,17 +67,22 @@ const FlightDashboard = () => {
 
         {/* Parameter Data Section */}
         <div className="h-[45%]">
-          <div className="w-[75%]">
+          <div className="w-[60%]">
             <Card title="Parameter Data" icon1={<Cog size={16} />} icon2={<Satellite size={16} />}>
             <div className="h-full w-full">
               {/* <ParameterDataCard /> */}
             </div>
             </Card>
           </div>
-          <div className="w-[25%]">
+          <div className="w-[20%]">
             {/* <Card title="System Performance" icon1={<BarChart3 size={16} />} icon2={<AlertCircle size={16} />}> */}
               {/* <BatteryComponent />
             </Card> */}
+          </div>
+          <div className="w-[20%]">
+            <Card title="RC and Control Inputs">
+              <ControlInputsComponent/>
+            </Card>
           </div>
         </div>
       </div>
