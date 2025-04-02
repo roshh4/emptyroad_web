@@ -75,7 +75,7 @@ const WasteCollectionMetrics: React.FC<WasteCollectionMetricsProps> = ({
         </div>
         </div>
       {/* Waste Composition Chart */}
-      <div className="w-full bg-[#1c2333] rounded-lg p-3 flex flex-col flex-grow min-h-[150]">
+      <div className="w-full bg-[#1c2333] rounded-lg p-3 flex flex-col flex-grow min-h-[160]">
         <p className="text-xs text-gray-400">Waste Composition</p>
         {wasteData.length > 0 ? (
             <div className="flex justify-center items-center gap-[2%] pt-[3%] pr-[4%] h-full">
