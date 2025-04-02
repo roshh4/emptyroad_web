@@ -66,20 +66,20 @@ const FlightDashboard = () => {
         </div>
 
         {/* Parameter Data Section */}
-        <div className="h-[45%]">
-          <div className="w-[60%]">
+        <div className="h-[45%] flex gap-2">
+          <div className="w-[40%]">
             <Card title="Parameter Data" icon1={<Cog size={16} />} icon2={<Satellite size={16} />}>
             <div className="h-full w-full">
               {/* <ParameterDataCard /> */}
             </div>
             </Card>
           </div>
-          <div className="w-[20%]">
-            {/* <Card title="System Performance" icon1={<BarChart3 size={16} />} icon2={<AlertCircle size={16} />}> */}
-              {/* <BatteryComponent />
-            </Card> */}
+          <div className="w-[30%]">
+            <Card title="System Performance" icon1={<BarChart3 size={16} />} icon2={<AlertCircle size={16} />}>
+              <BatteryComponent />
+            </Card>
           </div>
-          <div className="w-[20%]">
+          <div className="w-[30%]">
             <Card title="RC and Control Inputs">
               <ControlInputsComponent/>
             </Card>
@@ -94,14 +94,14 @@ const FlightDashboard = () => {
             <p className="text-sm text-green-400">AI Object Detection: Active</p>
           </Card>
         </div>
-        <div className="h-[50%] flex">
+        <div className="h-[40%] flex">
         <Card title="Waste Collection" className="w-full h-full flex flex-col">
          <div className="flex-1 w-full h-full">
           <WasteCollectionMetrics {...wasteData} />
          </div>
          </Card>
         </div>
-        <div className="h-[10%]">
+        <div className="h-[20%]">
           <Card title="System Data" icon1={<Box size={16} />}>
             <div className="flex gap-4">
               <SystemData />

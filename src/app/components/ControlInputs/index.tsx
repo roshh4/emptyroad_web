@@ -42,7 +42,7 @@ export default function ControlInputsComponent() {
     return () => clearInterval(interval)
   }, [])
 
-  const getModeColor = (mode) => {
+  const getModeColor = (mode: any) => {
     switch (mode) {
       case "MANUAL":
         return "bg-blue-600"
@@ -76,7 +76,7 @@ export default function ControlInputsComponent() {
   return (
     <Card className="overflow-hidden bg-[#0b1120] rounded-xl p-4 text-white flex flex-col w-full shadow-md border border-gray-800">
       <CardContent className="p-0">
-        <div className="bg-[#161d2f] p-4 rounded-lg">
+        <div className="bg-[#161d2f] p-[4%] rounded-lg">
           <div className="flex items-center gap-2 mb-4">
             <Settings className="h-5 w-5 text-primary" />
             <h3 className="font-semibold">RC & Control Inputs</h3>
@@ -96,7 +96,7 @@ export default function ControlInputsComponent() {
               <div className="flex items-center gap-2">
                 {control.armingStatus === 1 ? (
                   <>
-                    <Shield className="h-5 w-5 text-green-400" />
+                    <Shield className="h-5 w-5 text-white-800" />
                     <span className="text-lg font-medium">Armed</span>
                   </>
                 ) : (
