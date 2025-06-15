@@ -75,3 +75,5 @@ next-env.d.ts
 /CODE_OF_CONDUCT.md
 /BUILD.md
 /Vagrantfile
+
+pyproject.toml
