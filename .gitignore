@@ -3,12 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+.pnp.js
 
 # testing
 /coverage
@@ -28,10 +23,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# local env files
+.env*.local
 
 # vercel
 .vercel
@@ -39,3 +33,45 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+/.vs/
+/wscript
+/waf
+/tests/
+/modules/
+/libraries/
+/docs/
+/benchmarks/
+/Tools/
+/Rover/
+/Blimp/
+/ArduSub/
+/ArduPlane/
+/ArduCopter/
+/AntennaTracker/
+/.valgrind-suppressions
+/.valgrindrc
+/.pre-commit-config.yaml
+/.pydevproject
+/.gitmodules
+/.github/
+/.git-blame-ignore-revs
+/.gitattributes
+/.flake8
+/.editorconfig
+/.dir-locals.el
+/.dockerignore
+/Dockerfile
+/Makefile
+/Doxyfile.in
+/COPYING.txt
+/CODE_OF_CONDUCT.md
+/BUILD.md
+/Vagrantfile
