@@ -6,7 +6,8 @@ A dashboard interface for monitoring and controlling Unmanned Surface Vehicles (
 
 A real-time monitoring and control system for autonomous water surface cleaning vehicles. The system provides a comprehensive dashboard that enables operators to monitor the USV's operations, track garbage collection progress, and manage the vehicle's autonomous navigation.
 
-![image](https://github.com/user-attachments/assets/8fc7e8bc-4279-4fba-bdee-4e51e5e6f1b2)
+![image](https://github.com/user-attachments/assets/9bb8b82b-056c-4b5b-8583-7c8bfd45ad0f)
+
 
 
 ## Key Features
