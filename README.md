@@ -1,43 +1,74 @@
-# next.js tailwind
+# PALS - Pollution Abatement and Litter Surveillance
 
-Next docs : https://nextjs.org/docs
-tailwind docs : https://v2.tailwindcss.com/docs
+A modern dashboard interface for monitoring and controlling Unmanned Surface Vehicles (USVs) dedicated to water surface garbage collection.
 
+## Overview
+
+PALS is a real-time monitoring and control system for autonomous water surface cleaning vehicles. The system provides a comprehensive dashboard that enables operators to monitor the USV's operations, track garbage collection progress, and manage the vehicle's autonomous navigation.
+
+## Key Features
+
+### Real-time Camera Feed
+- Live video stream from the USV's onboard cameras
+- AI-powered object detection for floating debris
+- Real-time classification of detected garbage into categories:
+  - Plastic waste
+  - Metal objects
+  - Organic materials
+  - Other debris types
+
+### Garbage Collection Monitoring
+- Real-time tracking of collected waste
+- Waste type categorization and statistics
+- Collection efficiency metrics
+- Historical data visualization
+
+### Vehicle Control
+- Manual override capabilities
+- Autonomous navigation status
+- Battery and power management
+- Environmental condition monitoring (water state, debris density)
+
+### Environmental Data
+- Water condition monitoring
+- Debris density tracking
+- Weather integration
+- Navigation safety parameters
+
+## Technical Stack
+
+- **Frontend**: Next.js with TypeScript
+- **UI Framework**: Tailwind CSS
+- **State Management**: React Hooks
+- **AI Integration**: YOLOv5 for object detection
+- **Real-time Updates**: WebSocket integration
+
+## Getting Started
+
+### Prerequisites
+- Node.js 16.x or higher
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/pals.git
+cd pals
+```
+
+2. Install dependencies:
 ```bash
 npm install
+# or
+yarn install
+```
+
+3. Start the development server:
+```bash
 npm run dev
+# or
+yarn dev
 ```
 
-![WhatsApp Image 2025-03-20 at 21 11 00_1f4dec0b](https://github.com/user-attachments/assets/06c61508-cb49-4366-baa8-e939086d6b0c)
-
-
-# 1. Mission Planner Data (Navigation & Telemetry)
-```
-GPS Location (Latitude, Longitude)
-Speed (Current and Target Speed)
-Heading / Orientation (Compass direction)
-Battery Status (Voltage, Percentage)
-Propeller RPM
-Rudder Angle (Steering control)
-Altitude (if needed) (Water level variation)
-IMU Data (Acceleration, Gyro, and Roll/Pitch/Yaw)
-Communication Signal Strength (If using wireless control)
-Distance to Destination
-Obstacle Detection (LiDAR / Sonar readings)
-```
-# 2. Camera Feed & AI Processing
-```Live Video Stream (From onboard camera)
-Object Detection Overlay (Highlighting detected waste)
-Waste Type Classification (Plastic, Metal, Organic, etc.)
-Water Surface Condition (Waves, debris density)
-```
-# 3. Waste Collection Metrics
-```Total Waste Collected (Weight in kg or number of items)
-Belt Fill Level (Percentage of bin capacity used)
-Real-time Waste Count (Objects picked up per minute/hour)
-Waste Sorting Details (Categorized count of collected waste)
-Next Docking Time (Estimation based on bin fill level)
-```
-# 4. System Health
-```Mission Time & Duration
-Data Export (CSV/PDF) (For analytics & reporting)```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser

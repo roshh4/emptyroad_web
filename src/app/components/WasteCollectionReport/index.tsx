@@ -1,26 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-interface WasteCollectionMetricsProps {
+interface WasteData {
   beltFillLevel: number;
   wasteCountPerHour: number;
-  wasteSorting?: {
-    organic?: number;
-    plastic?: number;
-    paper?: number;
-    metal?: number;
-    other?: number;
+  wasteSorting: {
+    organic: number;
+    plastic: number;
+    paper: number;
+    metal: number;
+    other: number;
   };
   nextDockingTime: string;
 }
 
-const WasteCollectionMetrics: React.FC<WasteCollectionMetricsProps> = ({
-  beltFillLevel = 0,
-  wasteCountPerHour = 0,
-  wasteSorting = {},
-  nextDockingTime = "N/A",
-}) => {
-  // Safely handle potential undefined values
+const WasteDashboard: React.FC<WasteData> = (props) => {
+  const [data, setData] = useState<WasteData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/waste-data")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch data");
+        return res.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div className="text-white">Loading waste data...</div>;
+  if (error) return <div className="text-red-500">Error: {error}</div>;
+
+  const {
+    beltFillLevel = 0,
+    wasteCountPerHour = 0,
+    nextDockingTime = "N/A",
+    wasteSorting = {},
+  } = data || {};
+
   const safeSorting = {
     organic: 0,
     plastic: 0,
@@ -73,37 +97,38 @@ const WasteCollectionMetrics: React.FC<WasteCollectionMetricsProps> = ({
           <p className="text-xs text-gray-400">Total Waste</p>
           <p className="text-sm pl-[5%] font-bold text-white">{totalWasteCollected}</p>
         </div>
-        </div>
+      </div>
+
       {/* Waste Composition Chart */}
-      <div className="w-full bg-[#1c2333] rounded-lg p-3 flex flex-col flex-grow min-h-[160]">
+      <div className="w-full bg-[#1c2333] rounded-lg p-3 flex flex-col flex-grow min-h-[150]">
         <p className="text-xs text-gray-400">Waste Composition</p>
         {wasteData.length > 0 ? (
-            <div className="flex justify-center items-center gap-[2%] pt-[3%] pr-[4%] h-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={wasteData}>
-                  <XAxis
-                    dataKey="type"
-                    tick={{ fill: "white", fontSize: 10 }}
-                    axisLine={{ stroke: "#4a5568" }}
-                  />
-                  <YAxis tick={{ fill: "white", fontSize: 10 }} axisLine={{ stroke: "#4a5568" }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "#2d3748",
-                      borderColor: "#4a5568",
-                    }}
-                    itemStyle={{ color: "white" }}
-                  />
-                  <Bar dataKey="count" fill="#4299e1" barSize={20} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          ) : (
-            <p className="text-xs text-gray-500 text-center py-4">No waste data available</p>
-          )}
-        </div>
+          <div className="flex justify-center items-center pt-1 pr-[4%]">
+            <ResponsiveContainer width="100%" height={130}>
+              <BarChart data={wasteData}>
+                <XAxis
+                  dataKey="type"
+                  tick={{ fill: "white", fontSize: 10 }}
+                  axisLine={{ stroke: "#4a5568" }}
+                />
+                <YAxis tick={{ fill: "white", fontSize: 10 }} axisLine={{ stroke: "#4a5568" }} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#2d3748",
+                    borderColor: "#4a5568",
+                  }}
+                  itemStyle={{ color: "white" }}
+                />
+                <Bar dataKey="count" fill="#4299e1" barSize={20} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        ) : (
+          <p className="text-xs text-gray-500 text-center py-4">No waste data available</p>
+        )}
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  export default WasteCollectionMetrics;
+export default WasteDashboard;
