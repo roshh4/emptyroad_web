@@ -1,10 +1,13 @@
 # PALS - Pollution Abatement and Litter Surveillance
 
-A modern dashboard interface for monitoring and controlling Unmanned Surface Vehicles (USVs) dedicated to water surface garbage collection.
+A dashboard interface for monitoring and controlling Unmanned Surface Vehicles (USVs) dedicated to water surface garbage collection.
 
 ## Overview
 
-PALS is a real-time monitoring and control system for autonomous water surface cleaning vehicles. The system provides a comprehensive dashboard that enables operators to monitor the USV's operations, track garbage collection progress, and manage the vehicle's autonomous navigation.
+A real-time monitoring and control system for autonomous water surface cleaning vehicles. The system provides a comprehensive dashboard that enables operators to monitor the USV's operations, track garbage collection progress, and manage the vehicle's autonomous navigation.
+
+![image](https://github.com/user-attachments/assets/8fc7e8bc-4279-4fba-bdee-4e51e5e6f1b2)
+
 
 ## Key Features
 
@@ -40,8 +43,6 @@ PALS is a real-time monitoring and control system for autonomous water surface c
 - **Frontend**: Next.js with TypeScript
 - **UI Framework**: Tailwind CSS
 - **State Management**: React Hooks
-- **AI Integration**: YOLOv5 for object detection
-- **Real-time Updates**: WebSocket integration
 
 ## Getting Started
 
@@ -53,7 +54,7 @@ PALS is a real-time monitoring and control system for autonomous water surface c
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/pals.git
+git clone https://github.com/roshh4/pals.git
 cd pals
 ```
 
