@@ -1,4 +1,4 @@
-# PALS - Pollution Abatement and Litter Surveillance
+
 
 A dashboard interface for monitoring and controlling Unmanned Surface Vehicles (USVs) dedicated to water surface garbage collection.
 
